@@ -160,12 +160,6 @@ Your bot is now up and running ❤️
 
 ---
 
-## 📖 License
-
-This project is licensed under [MIT License](LICENSE).
-
----
-
 <div align="center">
   Made with ❤️ by Sathish Kumar
 </div>
