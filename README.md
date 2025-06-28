@@ -1,26 +1,7 @@
 <div align=center>
 
-## 𝐊𝐏𝐒𝐌𝐋-𝐗 𝐨𝐧 𝐇𝐞𝐫𝐨𝐤𝐮 𝐃𝐞𝐩𝐥𝐨𝐲 𝐮𝐬𝐢𝐧𝐠 𝐆𝐨𝐨𝐠𝐥𝐞 𝐂𝐨𝐥𝐚𝐛
-
-<p>
-    <a href="https://github.com/Tamilupdates/KPSML-X">
-        <kbd>
-            <img src="https://graph.org/file/879239eb830dd6c00b07e.jpg" width="550" alt="KPSML-X Logo">
-        </kbd>
-    </a>
-</p>
-
-### <img src="https://graph.org/file/504ba776ef0724a4ae85b.png" width="25" alt="Google Colab Logo"> 𝐆𝐨𝐨𝐠𝐥𝐞 𝐂𝐨𝐥𝐚𝐛 : [𝐃𝐞𝐩𝐥𝐨𝐲 𝐋𝐢𝐧𝐤](https://colab.research.google.com/drive/1ntoqoj3jDq2FtU2-joizh0DO64uoec9q)
-
----
 
 ## 𝐃𝐞𝐩𝐥𝐨𝐲 𝐨𝐧 𝐇𝐞𝐫𝐨𝐤𝐮
-
-[![Deploy on Heroku](https://www.herokucdn.com/deploy/button.svg)](https://dashboard.heroku.com/new?template=https://github.com/Tamilupdates/KPSML-X)
-
-</div>
-
----
 
 ## ***Heroku CLI Guide***
 
@@ -28,7 +9,7 @@
 > Make sure git is Installed in your system or quick run `apt-get install git pip curl -y`
 
 ```shell
-git clone https://github.com/Tamilupdates/KPSML-X && cd KPSML-X 
+git clone https://github.com/sathishk-dev/mrleechbot.git && cd mrleechbot 
 ```
 
 **Step 2 :** Now Install Heroku in your Sytem or checkout Official Heroku Deploy Docs, or Download via `apt-get` or `npm`
@@ -99,8 +80,8 @@ nano config.env
   DATABASE_URL = ""
   BASE_URL = ""
   SET_COMMANDS = "True"
-  UPSTREAM_REPO = "https://github.com/Tamilupdates/KPSML-X"
-  UPSTREAM_BRANCH = "hk_kpsmlx"
+  UPSTREAM_REPO = "https://github.com/sathishk-dev/mrleechbot.git"
+  UPSTREAM_BRANCH = "hk_skmlx"
   ```
 - After Setup Exit from Editor via `CTRL + X`, followed via `y` and `Enter`...
 
@@ -141,7 +122,7 @@ heroku logs -a APP_NAME
 - `UPSTREAM_REPO`: GitHub repository URL, if your repo is private add `https://username:{githubtoken}@github.com/{username}/{reponame}`. `Str`
 - Any change in docker you need to deploy/build again with updated repo to take effect. 
               - **No Need to delete .gitignore file or any File**
-- `UPSTREAM_BRANCH`: Upstream branch for update. Default is `hk_kpsmlx`. `Str`
+- `UPSTREAM_BRANCH`: Upstream branch for update. Default is `hk_skmlx`. `Str`
 - `BOT_TOKEN`: Telegram Bot Token that you got from [BotFather](https://t.me/BotFather). `Str`
 - `OWNER_ID`: Telegram User ID (not username) of the Owner of the bot. `Int`
 - `TELEGRAM_API`: This is to authenticate your Telegram account for downloading Telegram files. You can get this from <https://my.telegram.org>. `Int`
@@ -155,6 +136,6 @@ heroku logs -a APP_NAME
 
 ## ***Branch Specifications:***
 
-- All files to be Uploaded in `main` Branch and set Upstream as `hk_kpsmlx` Branch
+- All files to be Uploaded in `main` Branch and set Upstream as `hk_skmlx` Branch
 
 ---
