@@ -1,6 +1,6 @@
 # 🚀 MrLeechBot Deployment Guide
 
-A simple Telegram Leech Bot for deploying on **Heroku** or **VPS** using Docker.
+A Powerfull Telegram Leech Bot for deploying on **Heroku** or **VPS** using Docker.
 
 ---
 
