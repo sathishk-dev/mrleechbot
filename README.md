@@ -1,141 +1,174 @@
-<div align=center>
+<div align="center">
 
+# 🚀 MrLeechBot Deployment Guide
 
-## 𝐃𝐞𝐩𝐥𝐨𝐲 𝐨𝐧 𝐇𝐞𝐫𝐨𝐤𝐮
+A simple Telegram Leech Bot for deploying on **Heroku** or **VPS** using Docker.
 
-## ***Heroku CLI Guide***
+---
 
-**Step 1 :** Git clone this Repo and change directory
-> Make sure git is Installed in your system or quick run `apt-get install git pip curl -y`
+## 🌐 Deployment Options
 
-```shell
-git clone https://github.com/sathishk-dev/mrleechbot.git && cd mrleechbot 
+* [Heroku CLI Deployment](#-deploy-on-heroku)
+* [VPS Deployment](#-deploy-on-vps)
+* [Environment Variables](#-environment-variables)
+
+---
+
+</div>
+
+---
+
+## 💜 Deploy on Heroku
+
+### ✅ Prerequisites
+
+* [Git](https://git-scm.com/downloads)
+* [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli#install-the-heroku-cli)
+
+### 🛠️ Installation Steps
+
+#### 1. Clone the Repository
+
+```bash
+git clone https://github.com/sathishk-dev/mrleechbot.git && cd mrleechbot
 ```
 
-**Step 2 :** Now Install Heroku in your Sytem or checkout Official Heroku Deploy Docs, or Download via `apt-get` or `npm`
-> For Android : Use `termux` (Download via FDroid) for CLI usage
+#### 2. Install Heroku CLI
 
-**The script requires sudo and isn’t Windows compatible.**
-```shell
-curl https://cli-assets.heroku.com/install.sh | sh
-```
+Ubuntu/Debian:
 
-**Install with Ubuntu / Debian apt-get**
-```shell
+```bash
 curl https://cli-assets.heroku.com/install-ubuntu.sh | sh
 ```
 
-**Install via `npm` (Not Recommanded)**
-```shell
+Termux/Other Linux:
+
+```bash
+curl https://cli-assets.heroku.com/install.sh | sh
+```
+
+npm (not recommended):
+
+```bash
 npm install -g heroku
 ```
 
-**Official Heroku Install Guide :** [Check Here](https://devcenter.heroku.com/articles/heroku-cli#install-the-heroku-cli)
+#### 3. Login to Heroku
 
-**Step 3 :** Login into Heroku and Log In CLI via Browser 
-
-_With Browser_
-```shell
-heroku login
+```bash
+heroku login        # Opens browser
+# or
+heroku login -i     # Terminal login (use API key as password)
 ```
 
-**OR**
+#### 4. Create Heroku App
 
-_Without Browser_
-```shell
-heroku login -i
-```
-
-- Put `Heroku Email` : Heroku Email `email@example.com`
-- Put `Heroku Password` : Heroku API Key. Get from [Here](https://dashboard.heroku.com/account)
-
-**Step 4 :** Create Heroku App and specify stack and region with App Name
-
-```shell
+```bash
 heroku create --region us --stack container APP_NAME
 ```
 
-**To Be Noted**: Copy the `BASE_URL` after the App is Created and Put the Value in `BASE_URL` when editing `config.env`
+* `--region us` or `eu`
+* Replace `APP_NAME` with your unique name or leave it blank to auto-generate
 
-**Notes:**
-- `--region us` for United States Server.
-- `--region eu` for Europe Server.
-- `APP_NAME` should be replaced with your unique app name _(Optional)_. If not given it generates a random name.
-- `--stack container` for setting stack to container for Dockerfile.
-- `--buildpack heroku/python` for using build slug for repo deploy and build.
+#### 5. Set Environment Config
 
-**Step 5 :** Now set all the Required Variables and Files into this Branch MAIN Repo like config.env, accounts.zip, token.pickle, All Private Files(optional)- 
-  > Only config.env Mabdatory with Only Mandatory Vars Only, After that Put all Private Files or Vars via Bot Settings `/bs`
+Edit your environment file:
 
-**To Edit Inside CLI (nano Editor):** _(Termux Users)_
-```shell
+```bash
 nano config.env
 ```
-- **Sample config.env** _(Copy these and Paste in Editor and Fill Up)_
-  ```
-  BOT_TOKEN = ""
-  TELEGRAM_API = ""
-  TELEGRAM_HASH = ""
-  OWNER_ID = ""
-  DATABASE_URL = ""
-  BASE_URL = ""
-  SET_COMMANDS = "True"
-  UPSTREAM_REPO = "https://github.com/sathishk-dev/mrleechbot.git"
-  UPSTREAM_BRANCH = "hk_skmlx"
-  ```
-- After Setup Exit from Editor via `CTRL + X`, followed via `y` and `Enter`...
 
-**Helpful Commands:**
-- **Exit from nano** : `CTRL + X`
-- **Save File** : `CTRL + S`
-- **Check Help** : `CTRL + G`
-- **Undo Changes** : `ALT + U`
-- ^ means CTRL _(Termux Users)_
+🧪 Example:
 
-**Step 6 :** Set Local git remote for Heroku. Give All Commands One by One.
-
-```shell
-git add . -f
-git commit -m "HK Setup"
-heroku git:remote -a APP_NAME
+```env
+BOT_TOKEN=""
+TELEGRAM_API=""
+TELEGRAM_HASH=""
+OWNER_ID=""
+DATABASE_URL=""
+BASE_URL=""
+SET_COMMANDS="True"
+UPSTREAM_REPO="https://github.com/sathishk-dev/mrleechbot.git"
+UPSTREAM_BRANCH="hk_skmlx"
 ```
 
-**Step 7 :** Now push to Heroku via git forcefully to build.
+📌 Save with `CTRL + X`, press `Y`, then `Enter`.
 
-```shell
+#### 6. Connect Git & Deploy
+
+```bash
+git add . -f
+git commit -m "Heroku Setup"
+heroku git:remote -a APP_NAME
 git push heroku main -f
 ```
 
-**Heroku Logs:** When checking Logs, Use this will give Complete Logs.
-```shell
-heroku logs -a APP_NAME
+#### 7. Logs
+
+```bash
+heroku logs -a APP_NAME -t
 ```
 
-- Add arg `-t` for Live Stream Logs and Use `CTRL + C` to Exit from it.
+---
 
-**All Heroku CLI Commands :** [Click Here](https://devcenter.heroku.com/articles/heroku-cli-commands#heroku-config-set)
+## 🚩 Deploy on VPS
+
+### ✅ Prerequisites
+
+* Git, Docker installed on your VPS
+
+### 🛠️ Steps
+
+```bash
+git clone https://github.com/sathishk-dev/mrleechbot.git
+cd mrleechbot
+pico config.env   # Or use nano/vim to edit the file
+```
+
+📃 Fill in the required values in `config.env`:
+
+```env
+BOT_TOKEN=""
+TELEGRAM_API=""
+TELEGRAM_HASH=""
+OWNER_ID=""
+DATABASE_URL=""
+UPSTREAM_REPO=""
+UPSTREAM_BRANCH=""
+```
+
+### 🌟 Build and Run Docker
+
+```bash
+sudo docker build . -t wzml && sudo docker run -p 8080:8080 wzml
+```
+
+Your bot is now up and running ❤️
 
 ---
 
-## ***Variables Description:***
+## 🔢 Environment Variables
 
-- `UPSTREAM_REPO`: GitHub repository URL, if your repo is private add `https://username:{githubtoken}@github.com/{username}/{reponame}`. `Str`
-- Any change in docker you need to deploy/build again with updated repo to take effect. 
-              - **No Need to delete .gitignore file or any File**
-- `UPSTREAM_BRANCH`: Upstream branch for update. Default is `hk_skmlx`. `Str`
-- `BOT_TOKEN`: Telegram Bot Token that you got from [BotFather](https://t.me/BotFather). `Str`
-- `OWNER_ID`: Telegram User ID (not username) of the Owner of the bot. `Int`
-- `TELEGRAM_API`: This is to authenticate your Telegram account for downloading Telegram files. You can get this from <https://my.telegram.org>. `Int`
-- `TELEGRAM_HASH`: This is to authenticate your Telegram account for downloading Telegram files. You can get this from <https://my.telegram.org>. `Str`
-- `BASE_URL`: Valid BASE URL where the bot is deployed to use torrent web files selection. Format of URL should be `https://app-name-random_code.herokuapp.com/`, where `app-name` is the name of your heroku app Paste the URL got when the App was Made. `Str`
-- `TORRENT_TIMEOUT`: Timeout of dead torrents downloading with qBittorrent and Aria2c in seconds. `Int`
-  > Must Add else Bot Crashes! Set to 0 even not Needed
-- `DATABASE_URL`: Database URL of MongoDb to store all your files and Vars. Adding this will be Helpful. `Str`
+| Variable          | Description                                                                    |
+| ----------------- | ------------------------------------------------------------------------------ |
+| `BOT_TOKEN`       | Telegram bot token from [BotFather](https://t.me/BotFather)                    |
+| `OWNER_ID`        | Your Telegram user ID                                                          |
+| `TELEGRAM_API`    | API ID from [my.telegram.org](https://my.telegram.org)                         |
+| `TELEGRAM_HASH`   | API hash from [my.telegram.org](https://my.telegram.org)                       |
+| `DATABASE_URL`    | MongoDB URI                                                                    |
+| `BASE_URL`        | URL where the bot is hosted (for Heroku use `https://your-app.herokuapp.com/`) |
+| `UPSTREAM_REPO`   | Git repo for updates                                                           |
+| `UPSTREAM_BRANCH` | Branch name for auto updates                                                   |
+| `SET_COMMANDS`    | Set to `True` to auto set bot commands                                         |
+
+---
+
+## 📖 License
+
+This project is licensed under [MIT License](LICENSE).
 
 ---
 
-## ***Branch Specifications:***
-
-- All files to be Uploaded in `main` Branch and set Upstream as `hk_skmlx` Branch
-
----
+<div align="center">
+  Made with ❤️ by Sathish Kumar
+</div>
