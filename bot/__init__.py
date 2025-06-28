@@ -79,7 +79,7 @@ if len(DATABASE_URL) == 0:
 
 if DATABASE_URL:
     conn = MongoClient(DATABASE_URL)
-    db = conn.kpsmlx
+    db = conn.skmlx
     current_config = dict(dotenv_values('config.env'))
     old_config = db.settings.deployConfig.find_one({'_id': bot_id})
     if old_config is None:
@@ -394,11 +394,11 @@ if len(BASE_URL) == 0:
 
 UPSTREAM_REPO = environ.get('UPSTREAM_REPO', '')
 if len(UPSTREAM_REPO) == 0:
-    UPSTREAM_REPO = 'https://github.com/Tamilupdates/KPSML-X'
+    UPSTREAM_REPO = 'https://github.com/sathishk-dev/mrleechbot'
 
 UPSTREAM_BRANCH = environ.get('UPSTREAM_BRANCH', '')
 if len(UPSTREAM_BRANCH) == 0:
-    UPSTREAM_BRANCH = 'hk_kpsmlx'
+    UPSTREAM_BRANCH = 'hk_skmlx'
     
 UPGRADE_PACKAGES = environ.get('UPGRADE_PACKAGES', '')
 UPGRADE_PACKAGES = UPGRADE_PACKAGES.lower() == 'true'
@@ -495,11 +495,11 @@ IMG_PAGE = int(IMG_PAGE) if IMG_PAGE.isdigit() else ''
 
 AUTHOR_NAME = environ.get('AUTHOR_NAME', '')
 if len(AUTHOR_NAME) == 0:
-    AUTHOR_NAME = 'KPS Bots'
+    AUTHOR_NAME = 'SK Botz'
 
 AUTHOR_URL = environ.get('AUTHOR_URL', '')
 if len(AUTHOR_URL) == 0:
-    AUTHOR_URL = 'https://telegram.me/KPSBots'
+    AUTHOR_URL = 'https://t.me/sk_botz'
 
 TITLE_NAME = environ.get('TITLE_NAME', '')
 if len(TITLE_NAME) == 0:

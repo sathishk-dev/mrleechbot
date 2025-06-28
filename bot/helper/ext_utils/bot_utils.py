@@ -501,13 +501,13 @@ async def compare_versions(v1, v2):
 async def get_stats(event, key="home"):
     user_id = event.from_user.id
     btns = ButtonMaker()
-    btns.ibutton('Back', f'kpsmlx {user_id} kpsmlx home')
+    btns.ibutton('Back', f'skmlx {user_id} skmlx home')
     if key == "home":
         btns = ButtonMaker()
-        btns.ibutton('Bot Stats', f'kpsmlx {user_id} stats stbot')
-        btns.ibutton('OS Stats', f'kpsmlx {user_id} stats stsys')
-        btns.ibutton('Repo Stats', f'kpsmlx {user_id} stats strepo')
-        btns.ibutton('Bot Limits', f'kpsmlx {user_id} stats botlimits')
+        btns.ibutton('Bot Stats', f'skmlx {user_id} stats stbot')
+        btns.ibutton('OS Stats', f'skmlx {user_id} stats stsys')
+        btns.ibutton('Repo Stats', f'skmlx {user_id} stats strepo')
+        btns.ibutton('Bot Limits', f'skmlx {user_id} stats botlimits')
         msg = "⌬ <b><i>Bot & OS Statistics!</i></b>"
     elif key == "stbot":
         total, used, free, disk = disk_usage('/')
@@ -564,7 +564,7 @@ async def get_stats(event, key="home"):
         if await aiopath.exists('.git'):
             last_commit = (await cmd_exec("git log -1 --pretty='%cd ( %cr )' --date=format-local:'%d/%m/%Y'", True))[0]
             changelog = (await cmd_exec("git log -1 --pretty=format:'<code>%s</code> <b>By</b> %an'", True))[0]
-        official_v = (await cmd_exec("curl -o latestversion.py https://github.com/Tamilupdates/KPSML-X/-/raw/hk_kpsmlx/bot/version.py -s && python3 latestversion.py && rm latestversion.py", True))[0]
+        official_v = (await cmd_exec("curl -o latestversion.py https://github.com/sathishk-dev/mrleechbot/-/raw/hk_skmlx/bot/version.py -s && python3 latestversion.py && rm latestversion.py", True))[0]
         msg = BotTheme('REPO_STATS',
             last_commit=last_commit,
             bot_version=get_version(),
@@ -587,7 +587,7 @@ async def get_stats(event, key="home"):
                 UT = ('∞' if (val := config_dict['USER_MAX_TASKS']) == '' else val),
                 BT = ('∞' if (val := config_dict['BOT_MAX_TASKS']) == '' else val),
         )
-    btns.ibutton('Close', f'kpsmlx {user_id} close')
+    btns.ibutton('Close', f'skmlx {user_id} close')
     return msg, btns.build_menu(2)
 
 
@@ -739,7 +739,7 @@ async def set_commands(client):
             ),
             BotCommand(
                 BotCommands.HelpCommand,
-                'Get detailed help about the KPSML-X Bot',
+                'Get detailed help about the SKML-X Bot',
             ),
             BotCommand(
                 BotCommands.UserSetCommand[0],

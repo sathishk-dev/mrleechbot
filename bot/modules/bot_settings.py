@@ -38,12 +38,12 @@ default_values = {'AUTO_DELETE_MESSAGE_DURATION': 30,
                   'RSS_DELAY': 600,
                   'STATUS_UPDATE_INTERVAL': 10,
                   'SEARCH_LIMIT': 0,
-                  'UPSTREAM_BRANCH': 'hk_kpsmlx',
+                  'UPSTREAM_BRANCH': 'hk_skmlx',
                   'BOT_THEME': 'minimal',
                   'BOT_LANG': 'en',
                   'IMG_PAGE': 1,
-                  'AUTHOR_NAME': 'KPS Bots',
-                  'AUTHOR_URL': 'https://telegram.me/KPSBots',
+                  'AUTHOR_NAME': 'SK Botz',
+                  'AUTHOR_URL': 'https://t.me/sk_botz',
                   'TITLE_NAME': 'Leech Bot',
                   'GD_INFO': 'Uploaded by Leech Bot',
                   }
@@ -350,14 +350,14 @@ async def load_config():
 
     UPSTREAM_REPO = environ.get('UPSTREAM_REPO', '')
     if len(UPSTREAM_REPO) == 0:
-        UPSTREAM_REPO = 'https://github.com/Tamilupdates/KPSML-X'
+        UPSTREAM_REPO = 'https://github.com/sathishk-dev/mrleechbot'
         
     UPGRADE_PACKAGES = environ.get('UPGRADE_PACKAGES', '')
     UPGRADE_PACKAGES = UPGRADE_PACKAGES.lower() == 'true'
 
     UPSTREAM_BRANCH = environ.get('UPSTREAM_BRANCH', '')
     if len(UPSTREAM_BRANCH) == 0:
-        UPSTREAM_BRANCH = 'hk_kpsmlx'
+        UPSTREAM_BRANCH = 'hk_skmlx'
 
     STORAGE_THRESHOLD = environ.get('STORAGE_THRESHOLD', '')
     STORAGE_THRESHOLD = '' if len(
@@ -442,11 +442,11 @@ async def load_config():
 
     AUTHOR_NAME = environ.get('AUTHOR_NAME', '')
     if len(AUTHOR_NAME) == 0:
-        AUTHOR_NAME = 'KPS Bots'
+        AUTHOR_NAME = 'SK Botz'
 
     AUTHOR_URL = environ.get('AUTHOR_URL', '')
     if len(AUTHOR_URL) == 0:
-        AUTHOR_URL = 'https://telegram.me/KPSBots'
+        AUTHOR_URL = 'https://t.me/sk_botz'
 
     TITLE_NAME = environ.get('TITLE_NAME', '')
     if len(TITLE_NAME) == 0:
@@ -942,7 +942,7 @@ async def update_private_file(_, message, pre_message):
             await (await create_subprocess_exec("touch", ".netrc")).wait()
             await (await create_subprocess_exec("chmod", "600", ".netrc")).wait()
             await (await create_subprocess_exec("cp", ".netrc", "/root/.netrc")).wait()
-        elif file_name.startswith('kpsml_'):
+        elif file_name.startswith('skmlx_'):
             path = f"bot/helper/themes/{file_name.rsplit('.py', 1)[0]}.py"
             if await aiopath.isfile(path):
                 await remove(path)
@@ -962,7 +962,7 @@ async def update_private_file(_, message, pre_message):
     elif doc := message.document:
         file_name = doc.file_name
         path = file_name
-        if file_name.startswith('kpsml_') and file_name.endswith('.py'):
+        if file_name.startswith('skmlx_') and file_name.endswith('.py'):
             path = f'bot/helper/themes/{file_name}'
         await message.download(file_name=f'{getcwd()}/{path}')
         if file_name == 'accounts.zip':
